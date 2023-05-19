@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrapper {
+            width: 600px;
+            height: 600px;
+            background: yellow;
+            margin: auto;
+        }
+
+        #mask {
+            width: 200px;
+            height:200px;
+            background: skyblue;
+            position: center;
+            overflow: hidden;
+        }
+
+    </style>
+    <script>
+        let box;
+        let a = 0.1;
+        let targetX = 0;
+
+        function move() {
+            box.style.left = parseFloat(box.style.left) + a * (targetX - parseFloat(box.style.left)) + "px";
+
+        }
+        function init() {
+            
+            box = document.createElement("div");
+            box.style.width = 100 * 3 + "px";
+            box.style.height = 100 *3+ "px";
+            box.style.position = "absolute";
+            box.style.left = 200 + "px";
+            box.styel.top=200+"px";
+           
+
+            //이미지 7개를 동적으로 생성하기
+            for (let i = 1; i <= 9; i++) {
+                let img = document.createElement("img");
+                img.src ="../images/hero/image1" + i + ".png";
+                img.style.position = "absolute";
+                img.style.left = (i * 200) + "px";
+               
+
+                box.appendChild(img);
+            }
+
+            //box를 mask의 자식으로 추가
+            let mask = document.getElementById("mask");
+            mask.appendChild(box);
+
+
+
+                //생성된 span 에 이벤트 연결
+                span.addEventListener("click", function(){
+                        // box 의 위치설정을 위한 targetX값만 바꾸기
+                        targetX=i*400;
+                        targetY=r*200;
+                        
+                });
+            }
+        
+        addEventListener("load", function () {
+            init();
+            setInterval("move()", 10);
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="mask"></div>
+    </div>
+</body>
+
+</html>
